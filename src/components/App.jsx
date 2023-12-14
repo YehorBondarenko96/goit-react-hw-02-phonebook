@@ -10,13 +10,13 @@ export class App extends Component {
     name: ''
   };
 
-  updateState = (newName) => {
-    const namesInState = this.state.name;
-    if(!namesInState.includes(newName)){
+  updateState = (newName, newNumb) => {
+    const contactsInState = this.state.contacts;
+    if(!contactsInState.some(contact => contact.name === newName)){
       this.setState((state) => ({
-        name: [...state.name, newName],
+        // name: [...state.name, newName],
           contacts: [...state.contacts, 
-          {id: nanoid(), name: newName}]
+          {id: nanoid(), name: newName, number: newNumb}]
         }))
     }};
 
