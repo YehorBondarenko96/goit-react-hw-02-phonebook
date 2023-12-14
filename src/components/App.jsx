@@ -14,10 +14,11 @@ export class App extends Component {
     const contactsInState = this.state.contacts;
     if(!contactsInState.some(contact => contact.name === newName)){
       this.setState((state) => ({
-        // name: [...state.name, newName],
           contacts: [...state.contacts, 
           {id: nanoid(), name: newName, number: newNumb}]
         }))
+    } else{
+      alert(`${newName} is already in contacts.`)
     }};
 
   render(){
@@ -34,13 +35,14 @@ export class App extends Component {
       <div>
   <h1 className={css.phonebook}>Phonebook</h1>
   <ContactForm 
-  // dataState={this.state}
   updateState={this.updateState}
   />
 
   <h2 className={css.contacts}>Contacts</h2>
   {/* <Filter ... /> */}
-  <ContactList dataContact={this.state}/>
+  <ContactList 
+  dataContact={this.state}
+  />
 </div>
     </div>
   )}

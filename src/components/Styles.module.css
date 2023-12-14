@@ -33,6 +33,34 @@
     font-size: 16px;
 }
 
+.listContacts{
+    list-style-type: disc;
+}
+
 .itemContscts{
     font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.pItemContacts{
+    margin: 0;
+    padding: 0;
+}
+
+.itemContscts::before {
+    content: '\2022';
+    margin-bottom: 6px;
+    color: #333; 
+    font-size: 48px;
+    line-height: 0.5;
+}
+
+.buttonDelete{
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
