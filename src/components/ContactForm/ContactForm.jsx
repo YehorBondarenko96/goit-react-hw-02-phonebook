@@ -6,7 +6,7 @@ export class ContactForm extends Component {
     writeDataInAddState = (evt) => {
         evt.preventDefault();
         const newName = evt.currentTarget.elements.name.value;
-        const newNumb = evt.currentTarget.elements.number.value
+        const newNumb = evt.currentTarget.elements.number.value;
         this.props.updateStateForAdd(newName, newNumb);
         evt.currentTarget.reset();
     };

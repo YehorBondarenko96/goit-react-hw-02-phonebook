@@ -8,7 +8,13 @@ export class ContactList extends Component {
         this.props.updateStateForDelete(idContact)
     }
     render(){
-        const contacts = this.props.dataContact.contacts;
+        let contacts = this.props.dataContact.contacts;
+        const filter = this.props.dataContact.filter.toLowerCase();
+        if(filter.length > 0){
+            contacts = contacts.filter(
+                (contact) => (contact.name.toLowerCase().includes(filter))
+                )
+        }
     return(
         <ul className={css.listContacts}>
             {contacts.length !== 0 &&
