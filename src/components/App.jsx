@@ -18,7 +18,7 @@ export class App extends Component {
 
   updateStateForAdd = (newName, newNumb) => {
     const contactsInState = this.state.contacts;
-    if(!contactsInState.some(contact => contact.name === newName)){
+    if(!contactsInState.some(contact => contact.name.toLowerCase() === newName.toLowerCase())){
       this.setState((state) => ({
           contacts: [...state.contacts, 
           {id: nanoid(), name: newName, number: newNumb}]
