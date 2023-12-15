@@ -7,7 +7,7 @@ export class ContactForm extends Component {
         evt.preventDefault();
         const newName = evt.currentTarget.elements.name.value;
         const newNumb = evt.currentTarget.elements.number.value
-        this.props.updateState(newName, newNumb);
+        this.props.updateStateForAdd(newName, newNumb);
         evt.currentTarget.reset();
     };
 

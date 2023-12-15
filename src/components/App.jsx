@@ -7,10 +7,10 @@ import { nanoid } from "nanoid";
 export class App extends Component {
   state = {
     contacts: [],
-    name: ''
+    filters: ''
   };
 
-  updateState = (newName, newNumb) => {
+  updateStateForAdd = (newName, newNumb) => {
     const contactsInState = this.state.contacts;
     if(!contactsInState.some(contact => contact.name === newName)){
       this.setState((state) => ({
@@ -20,6 +20,13 @@ export class App extends Component {
     } else{
       alert(`${newName} is already in contacts.`)
     }};
+
+  updateStateForDelete = (idContact) => {
+    const newContactsForState = this.state.contacts.filter((contact) => (contact.id !== idContact));
+    this.setState((state) => ({
+      contacts: [...newContactsForState]
+    }))
+  }
 
   render(){
   return (
@@ -35,13 +42,14 @@ export class App extends Component {
       <div>
   <h1 className={css.phonebook}>Phonebook</h1>
   <ContactForm 
-  updateState={this.updateState}
+  updateStateForAdd={this.updateStateForAdd}
   />
 
   <h2 className={css.contacts}>Contacts</h2>
   {/* <Filter ... /> */}
   <ContactList 
   dataContact={this.state}
+  updateStateForDelete={this.updateStateForDelete}
   />
 </div>
     </div>
