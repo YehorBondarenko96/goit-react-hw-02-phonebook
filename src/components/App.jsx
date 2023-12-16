@@ -16,7 +16,10 @@ export class App extends Component {
     filter: ''
   };
 
-  updateStateForAdd = (newName, newNumb) => {
+  updateStateForAdd = (evt) => {
+    evt.preventDefault();
+    const newName = evt.currentTarget.elements.name.value;
+    const newNumb = evt.currentTarget.elements.number.value;
     const contactsInState = this.state.contacts;
     if(!contactsInState.some(contact => contact.name.toLowerCase() === newName.toLowerCase())){
       this.setState((state) => ({
@@ -25,22 +28,38 @@ export class App extends Component {
         }))
     } else{
       alert(`${newName} is already in contacts.`)
-    }};
+    }
+    evt.currentTarget.reset();
+  };
 
-  updateStateForDelete = (idContact) => {
+  updateStateForDelete = (evt) => {
+    const idContact = evt.currentTarget.id;
     const newContactsForState = this.state.contacts.filter((contact) => (contact.id !== idContact));
     this.setState((state) => ({
       contacts: [...newContactsForState]
     }))
   };
 
-  updateStateForFilter = (filterValue) => {
+  updateStateForFilter = (evt) => {
+    evt.preventDefault();
+    const filterValue = evt.target.value;
     this.setState((state) => ({
       filter: filterValue
     }))
   };
 
   render(){
+
+    const filterWithState = this.state.filterWithState;
+
+    let contacts = this.state.contacts;
+    const filter = this.state.filter;
+    if(filter.length > 0){
+      contacts = contacts.filter(
+          (contact) => (contact.name.toLowerCase().includes(filter.toLowerCase()))
+          )
+    }
+
   return (
     <div
       style={{
@@ -59,11 +78,11 @@ export class App extends Component {
 
   <h2 className={css.contacts}>Contacts</h2>
   <Filter
-  filterWithState={this.state.filter}
+  filterWithState={filterWithState}
   updateStateForFilter={this.updateStateForFilter}
   />
   <ContactList 
-  dataContact={this.state}
+  contacts={contacts}
   updateStateForDelete={this.updateStateForDelete}
   />
 </div>

@@ -1,15 +1,6 @@
-import { Component } from "react";
 import css from '../Styles.module.css'
 
-export class Filter extends Component {
-    readFilterValue = (evt) => {
-        evt.preventDefault();
-        const filterValue = evt.target.value;
-        this.props.updateStateForFilter(filterValue)
-    };
-
-    render(){
-        const filterWithState = this.props.filterWithState;
+export const Filter = ({filterWithState, updateStateForFilter}) => {
         return(
             <>
                 <label className={css.label}>
@@ -19,10 +10,9 @@ export class Filter extends Component {
                 className={css.input} 
                 type="text" 
                 name="filter" 
-                onChange={this.readFilterValue}
+                onChange={updateStateForFilter}
                 />
             </label>
             </>
         )
-    }
 }

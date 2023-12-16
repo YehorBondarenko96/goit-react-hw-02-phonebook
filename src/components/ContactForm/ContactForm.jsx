@@ -1,21 +1,8 @@
-import { Component } from "react";
 import css from '../Styles.module.css';
 
-export class ContactForm extends Component {
-
-    writeDataInAddState = (evt) => {
-        evt.preventDefault();
-        const newName = evt.currentTarget.elements.name.value;
-        const newNumb = evt.currentTarget.elements.number.value;
-        this.props.updateStateForAdd(newName, newNumb);
-        evt.currentTarget.reset();
-    };
-
-    
-  render() {
-
+export const ContactForm = ({updateStateForAdd}) => {
     return (
-        <form className={css.form} onSubmit={this.writeDataInAddState}>
+        <form className={css.form} onSubmit={updateStateForAdd}>
             <label className={css.label}>
                 <span className={css.nameInput}>Name</span>
             <input className={css.input} type="text" name="name" required />
@@ -27,5 +14,4 @@ export class ContactForm extends Component {
             <button className={css.button} type="submit">Add contact</button>
         </form>
     )
-  }
 };
